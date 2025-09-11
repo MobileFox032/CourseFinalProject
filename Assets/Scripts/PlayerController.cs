@@ -50,6 +50,22 @@ public class PlayerController : MonoBehaviour
         _rb.MovePosition(transform.position + moveVector * _speed * Time.deltaTime);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Shop"))
+        {
+            ShopManager.Instance.ActivateShop();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+       if (other.CompareTag("Shop"))
+        {
+            ShopManager.Instance.DeactivateShop();
+        } 
+    }
+
     public void EnableWeaponCollider()
     {
         _weaponCollider.enabled = true;
