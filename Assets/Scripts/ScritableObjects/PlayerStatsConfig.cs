@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerStatsConfig : ScriptableObject
 {
     public int Health => playerHealth;
-    private int playerHealth = 100;
+    [SerializeField] private int playerHealth = 100;
     public float Speed => playerSpeed;
-    private float playerSpeed = 5f;
+    [SerializeField] private float playerSpeed = 5f;
     public int BasicDamage => playerBasicDamage;
-    private int playerBasicDamage = 20;
+    [SerializeField] private int playerBasicDamage = 20;
 }
