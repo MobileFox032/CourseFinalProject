@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 550523558}
-  _speed: 5
+  playerStats: {fileID: 11400000, guid: ffbe93f325502d344aa863e7e313a03e, type: 2}
   _animator: {fileID: 2101742610}
   _weaponCollider: {fileID: 875949253}
 --- !u!143 &550523558
@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 1446565995}
-  _speed: 5
+  playerStats: {fileID: 0}
   _animator: {fileID: 1446566003}
   _weaponCollider: {fileID: 0}
 --- !u!95 &1446566003

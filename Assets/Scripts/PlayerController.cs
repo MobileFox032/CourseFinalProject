@@ -4,13 +4,24 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private PlayerStatsConfig playerStats;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _weaponCollider;
 
     private Vector2 moveInput;
     private bool _isPlayerWalking;
+    private float _speed;
+    private int _maxHealth;
+    private int _currentHealth;
+    private int _basicDamage;
+    void Start()
+    {
+        _speed = playerStats.Speed;
+        _maxHealth = playerStats.Health;
+        _currentHealth = _maxHealth;
+        _basicDamage = playerStats.BasicDamage;
 
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         if (!_isPlayerWalking)
