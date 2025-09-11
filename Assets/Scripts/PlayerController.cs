@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private CharacterController _characterController;
+    [SerializeField] private Rigidbody _rb;
     [SerializeField] private PlayerStatsConfig playerStats;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _weaponCollider;
@@ -43,9 +43,11 @@ public class PlayerController : MonoBehaviour
         Vector3 moveVector = new Vector3(moveInput.x, 0, moveInput.y);
         if (moveVector != Vector3.zero)
         {
-            _characterController.transform.rotation = Quaternion.Slerp(_characterController.transform.rotation, Quaternion.LookRotation(moveVector), 0.15f);   
+ 
+            _rb.transform.rotation = Quaternion.Slerp(_rb.transform.rotation, Quaternion.LookRotation(moveVector), 0.15f);
         }
-        _characterController.Move(moveVector * _speed * Time.deltaTime);
+
+        _rb.MovePosition(transform.position + moveVector * _speed * Time.deltaTime);
     }
 
     public void EnableWeaponCollider()
