@@ -6,4 +6,6 @@ public class Constants
     public static string playerWalk = "IsWalking";
 
     public static int playerMaxHealth = 100;
+    public static int farmPlotBuyCost = 25;
+    public static int farmPlotSellCost = 15;
 }
