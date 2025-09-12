@@ -38,6 +38,12 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
         _animator.SetTrigger(Constants.attackAnim);
     }
+
+    public void TakeDamage(int damage)
+    {
+        _currentHealth -= damage;
+        PlayerHealth.Instance.SetCurrentHealth(_currentHealth);
+    }
     void Update()
     {
         Vector3 moveVector = new Vector3(moveInput.x, 0, moveInput.y);
