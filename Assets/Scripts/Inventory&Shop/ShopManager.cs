@@ -6,8 +6,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private GameObject[] _farmPlots;
 
     public static ShopManager Instance { get; private set; }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -26,11 +25,6 @@ public class ShopManager : MonoBehaviour
     public void DeactivateShop()
     {
         _shopUI.SetActive(false);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void BuyFarmPlot()
@@ -57,13 +51,20 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void BuyTomato()
+    public void BuyItem(ItemsData item)
     {
-        MainManager.Instance.SpendGold(Constants.tomatoBuyCost);
+        Debug.Log("BuyItem from ShopManager");
+        if (MainManager.Instance.Gold - item.CostToBuy >= 0)
+        {
+            MainManager.Instance.SpendGold(item.CostToBuy);
+            InventoryManager.Instance.AddItem(item);
+        }
+        
     }
 
-    public void SellTomato()
+    public void SellItem(ItemsData item)
     {
-        MainManager.Instance.AddGold(Constants.tomatoSellCost);
+        MainManager.Instance.AddGold(item.SellCost);
+        InventoryManager.Instance.RemoveItem(item); 
     }
 }
