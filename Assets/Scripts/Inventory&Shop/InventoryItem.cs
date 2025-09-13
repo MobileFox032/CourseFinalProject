@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-[Serializable]
+
 public class InventoryItem
 {
     public ItemsData itemData;

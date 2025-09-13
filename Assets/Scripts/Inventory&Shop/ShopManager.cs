@@ -53,7 +53,6 @@ public class ShopManager : MonoBehaviour
 
     public void BuyItem(ItemsData item)
     {
-        Debug.Log("BuyItem from ShopManager");
         if (MainManager.Instance.Gold - item.CostToBuy >= 0)
         {
             MainManager.Instance.SpendGold(item.CostToBuy);

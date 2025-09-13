@@ -6,7 +6,6 @@ public class ShopButtonScript : MonoBehaviour
 
     public void BuyItem()
     {
-        Debug.Log("Button Buy clicked");
         ShopManager.Instance.BuyItem(_item);
     }
 
