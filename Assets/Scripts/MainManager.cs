@@ -6,7 +6,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance { get; private set; }
     public int Gold => currentGoldAmount;
     private int currentGoldAmount = 200;
-    public int _currentFarmPlotIndex = 0;
+    public int currentFarmPlotIndex = 0;
 
     public event Action<int> OnGoldChanged;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

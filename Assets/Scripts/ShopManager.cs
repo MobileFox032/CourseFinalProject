@@ -38,11 +38,11 @@ public class ShopManager : MonoBehaviour
         
         if (MainManager.Instance.Gold - Constants.farmPlotBuyCost >= 0)
         {
-            if (MainManager.Instance._currentFarmPlotIndex + 1 < _farmPlots.Length)
+            if (MainManager.Instance.currentFarmPlotIndex + 1 < _farmPlots.Length)
             {
                 MainManager.Instance.SpendGold(Constants.farmPlotBuyCost);
-                MainManager.Instance._currentFarmPlotIndex++;
-                _farmPlots[MainManager.Instance._currentFarmPlotIndex].SetActive(true);
+                MainManager.Instance.currentFarmPlotIndex++;
+                _farmPlots[MainManager.Instance.currentFarmPlotIndex].SetActive(true);
             }
         }
     }
