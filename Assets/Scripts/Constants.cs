@@ -8,4 +8,7 @@ public class Constants
     public static int playerMaxHealth = 100;
     public static int farmPlotBuyCost = 25;
     public static int farmPlotSellCost = 15;
+
+    public static int tomatoBuyCost = 50;
+    public static int tomatoSellCost = 30;
 }

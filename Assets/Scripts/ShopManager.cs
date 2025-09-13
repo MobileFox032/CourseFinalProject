@@ -35,7 +35,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyFarmPlot()
     {
-        
+
         if (MainManager.Instance.Gold - Constants.farmPlotBuyCost >= 0)
         {
             if (MainManager.Instance.currentFarmPlotIndex + 1 < _farmPlots.Length)
@@ -45,5 +45,25 @@ public class ShopManager : MonoBehaviour
                 _farmPlots[MainManager.Instance.currentFarmPlotIndex].SetActive(true);
             }
         }
+    }
+
+    public void SellFarmPlot()
+    {
+        if (MainManager.Instance.currentFarmPlotIndex > 0)
+        {
+            MainManager.Instance.AddGold(Constants.farmPlotSellCost);
+            _farmPlots[MainManager.Instance.currentFarmPlotIndex].SetActive(false);
+            MainManager.Instance.currentFarmPlotIndex--;
+        }
+    }
+
+    public void BuyTomato()
+    {
+        MainManager.Instance.SpendGold(Constants.tomatoBuyCost);
+    }
+
+    public void SellTomato()
+    {
+        MainManager.Instance.AddGold(Constants.tomatoSellCost);
     }
 }
