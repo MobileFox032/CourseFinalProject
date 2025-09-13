@@ -3,12 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private bool shouldFaceMoveDiraction = false;
+
+    [SerializeField] private CharacterController controller;
     [SerializeField] private PlayerStatsConfig playerStats;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _weaponCollider;
+    [SerializeField] private float gravity = -9.8f;
 
-    private Vector2 moveInput;
+    private Vector3 moveInput;
+    private Vector3 velocity;
     private bool _isPlayerWalking;
     private float _speed;
     private int _maxHealth;
@@ -46,14 +51,23 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        Vector3 moveVector = new Vector3(moveInput.x, 0, moveInput.y);
-        if (moveVector != Vector3.zero)
-        {
- 
-            _rb.transform.rotation = Quaternion.Slerp(_rb.transform.rotation, Quaternion.LookRotation(moveVector), 0.15f);
-        }
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+        forward.y = 0;
+        right.y = 0;
 
-        _rb.MovePosition(transform.position + moveVector * _speed * Time.deltaTime);
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection = forward * moveInput.y + right * moveInput.x;
+        controller.Move(moveDirection * _speed * Time.deltaTime);
+        if (shouldFaceMoveDiraction && moveDirection.sqrMagnitude > 0.001)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 10f * Time.deltaTime);
+        }
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

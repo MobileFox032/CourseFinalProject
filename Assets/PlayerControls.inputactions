@@ -26,7 +26,7 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "WASD",
                     "id": "0adab375-6de2-4805-a6d9-ee0344a8da5f",
                     "path": "2DVector",
                     "interactions": "",
@@ -82,6 +82,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5a65c3db-667b-418a-a746-9da3b35226d2",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "83021c08-c550-4b93-8c86-bc2bf668104a",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -90,6 +101,76 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CameraControls",
+            "id": "e0e0deb9-89ec-415d-ae2a-9d7b095cc573",
+            "actions": [
+                {
+                    "name": "MouseZoom",
+                    "type": "Value",
+                    "id": "c7adb1d5-947d-4c57-8dbe-5a4993f76f10",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "GamepadZoom",
+                    "type": "Value",
+                    "id": "2305b57a-2a68-4f3c-acbe-4e3c8f19e551",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "83771599-5833-4d8e-b87b-3f7054ca6eab",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "1e02f9ca-f1df-4930-8f15-498f279ea141",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamepadZoom",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "aba64451-0b89-407b-a6e8-234f9352bc4b",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamepadZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5978bab2-e83a-4565-9a53-0fd47348afb7",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamepadZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
