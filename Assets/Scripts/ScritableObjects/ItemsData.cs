@@ -19,12 +19,14 @@ public class ItemsData : ScriptableObject
     [SerializeField] private bool _isStackable = true;
 
     public Sprite ItemIcon => _itemIcon;
-    [SerializeField] private Sprite _itemIcon; 
-    
+    [SerializeField] private Sprite _itemIcon;
+
     public GameObject PrefabSmall => _prefabSmall;
     [SerializeField] private GameObject _prefabSmall;
     public GameObject PrefabMedium => _prefabMedium;
     [SerializeField] private GameObject _prefabMedium;
     public GameObject PrefabLarge => _prefabLarge;
     [SerializeField] private GameObject _prefabLarge;
+    public ItemsType ItemType => _itemType;
+    [SerializeField] private ItemsType _itemType; 
 }

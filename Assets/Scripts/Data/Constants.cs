@@ -11,4 +11,5 @@ public class Constants
 
     public static int tomatoBuyCost = 50;
     public static int tomatoSellCost = 30;
+
 }

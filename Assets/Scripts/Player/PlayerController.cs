@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private int _currentHealth;
     private int _basicDamage;
     private int clickedSlot;
+    private ItemsType _activeItemType;
+    private FarmSlot _inFarmSlot;
     void Start()
     {
         _speed = playerStats.Speed;
@@ -38,11 +40,23 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
 
-    public void OnAttackClick(InputAction.CallbackContext context)
+    public void OnActionButtonClick(InputAction.CallbackContext context)
     {
-        _isPlayerWalking = false;
-        _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
-        _animator.SetTrigger(Constants.attackAnim);
+        ItemsData _activeItemData = InventoryManager.Instance.GetItemInActiveSlot().itemData;
+        _activeItemType = _activeItemData.ItemType;
+        if (_activeItemType == ItemsType.Weapon)
+        {
+            _isPlayerWalking = false;
+            _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
+            _animator.SetTrigger(Constants.attackAnim);
+        }else if (_activeItemType == ItemsType.Seed)
+        {
+            if (_inFarmSlot != null)
+            {
+                FarmManager.Instance.PlantSeed(_activeItemData, _inFarmSlot);
+            }
+        }
+        
     }
 
     public void OnInventorySlotsClick(InputAction.CallbackContext context)
@@ -51,7 +65,6 @@ public class PlayerController : MonoBehaviour
         {
             InventoryManager.Instance.SelectSlot(clickedSlot - 1);
         }
-        // clickedSlot = context.control.displayName;
     }
 
     public void TakeDamage(int damage)
@@ -85,6 +98,12 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Shop"))
         {
             ShopManager.Instance.ActivateShop();
+        }else if (other.CompareTag("FarmSlot"))
+        {
+            if (other.gameObject.TryGetComponent(out FarmSlot farmSlot))
+            {
+                _inFarmSlot = farmSlot;    
+            }
         }
     }
 
@@ -93,7 +112,10 @@ public class PlayerController : MonoBehaviour
        if (other.CompareTag("Shop"))
         {
             ShopManager.Instance.DeactivateShop();
-        } 
+        }else if (other.CompareTag("FarmSlot"))
+        {
+            _inFarmSlot = null;
+        }
     }
 
     public void EnableWeaponCollider()
