@@ -29,16 +29,7 @@ public class InventoryManager : MonoBehaviour
         if (itemDictionary.TryGetValue(itemData, out InventoryItem item))
         {
             item.AddToStack();
-            for (int i = 0; i < inventorySlots.Length; i++)
-            {
-                InventorySlot slot = inventorySlots[i];
-                InventoryItem itemInSlot = slot._item;
-                if (itemInSlot == item)
-                {
-                    ChangeItemInSlot(item, slot);
-                    return;
-                }
-            }
+            ChangeItemInSlot(item, item.itemSlot);
         }
         else
         {
@@ -56,7 +47,6 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-
     }
     public void SelectSlot(int _newSelectedSlot)
     {
@@ -66,6 +56,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void ChangeItemInSlot(InventoryItem item, InventorySlot slot)
     {
+        item.itemSlot = slot;
         slot.SetItem(item);
     }
     public void RemoveItem(ItemsData itemData)
@@ -73,31 +64,19 @@ public class InventoryManager : MonoBehaviour
         if (itemDictionary.TryGetValue(itemData, out InventoryItem item))
         {
             item.RemoveFromStack();
-            for (int i = 0; i < inventorySlots.Length; i++)
-                {
-                    InventorySlot slot = inventorySlots[i];
-                    InventoryItem itemInSlot = slot._item;
-                    if (itemInSlot == item)
-                    {
-                        slot.UpdateStackSizeText(item.stackSize);
-                        break;
-                    }
-                }
+            item.itemSlot.UpdateStackSizeText(item.stackSize);
+
             if (item.stackSize == 0)
             {
                 inventory.Remove(item);
                 itemDictionary.Remove(itemData);
-                for (int i = 0; i < inventorySlots.Length; i++)
-                {
-                    InventorySlot slot = inventorySlots[i];
-                    InventoryItem itemInSlot = slot._item;
-                    if (itemInSlot == item)
-                    {
-                        slot.Clear(item);
-                        break;
-                    }
-                }
+                item.itemSlot.Clear(item);
             }
         }
+    }
+
+    public InventoryItem GetItemInActiveSlot()
+    {
+        return inventorySlots[_selectedSlot]._item;
     }
 }
