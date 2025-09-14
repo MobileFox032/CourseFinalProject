@@ -6,9 +6,12 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance { get; private set; }
     public List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<ItemsData, InventoryItem> itemDictionary = new Dictionary<ItemsData, InventoryItem>();
+    [SerializeField] private ItemsData[] startingItems;
+    [SerializeField] private WeaponItem[] weaponItems;
 
     public InventorySlot[] inventorySlots;
     private int _selectedSlot = 0;
+    private WeaponItem _currentActiveWeapon;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -22,6 +25,10 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         inventorySlots[_selectedSlot].SelectedSlot();
+        foreach (var item in startingItems)
+        {
+            AddItem(item);
+        }
     }
 
     public void AddItem(ItemsData itemData)
@@ -53,6 +60,25 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[_selectedSlot].NonSelectedSlot();
         inventorySlots[_newSelectedSlot].SelectedSlot();
         _selectedSlot = _newSelectedSlot;
+        if (inventorySlots[_selectedSlot]._item.itemData.ItemType == ItemsType.Weapon)
+        {
+            foreach (var item in weaponItems)
+            {
+                if (item.ID == inventorySlots[_selectedSlot]._item.itemData.ID)
+                {
+                    item.EnablePrefab(true);
+                    _currentActiveWeapon = item;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (_currentActiveWeapon != null)
+            {
+                _currentActiveWeapon.EnablePrefab(false);
+            }
+        }
     }
     public void ChangeItemInSlot(InventoryItem item, InventorySlot slot)
     {

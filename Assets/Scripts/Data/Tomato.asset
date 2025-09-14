@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Tomato
   m_EditorClassIdentifier: 
   _id: 1
+  _isStackable: 0
+  _itemIcon: {fileID: 21300000, guid: 45690981bfa5ca549a1ab617be0fe3d4, type: 3}
+  _itemType: 1
+  _damage: 0
   _costToBuy: 50
   _sellCost: 30
   _sellCostFullyGrown: 100
   _timeToGrowth: 2
-  _isStackable: 1
-  _itemIcon: {fileID: 21300000, guid: 45690981bfa5ca549a1ab617be0fe3d4, type: 3}
   _prefabSmall: {fileID: 6651310731303358679, guid: 1392dbd2be3bbd04d8e5c57b904b42ae, type: 3}
   _prefabMedium: {fileID: 5054277889059016994, guid: f12845bb4d1709a499e97026b8068627, type: 3}
   _prefabLarge: {fileID: 9218926353566358502, guid: 98541326b56e6e14eb84d42aa2461bac, type: 3}
-  _itemType: 1
