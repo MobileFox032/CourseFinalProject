@@ -29,6 +29,15 @@ public class InventoryManager : MonoBehaviour
         {
             AddItem(item);
         }
+        foreach (var item in weaponItems)
+        {
+            if (item.ID == inventorySlots[_selectedSlot]._item.itemData.ID)
+                {
+                    item.EnablePrefab(true);
+                    _currentActiveWeapon = item;
+                    break;
+                }
+        }
     }
 
     public void AddItem(ItemsData itemData)
@@ -60,24 +69,31 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[_selectedSlot].NonSelectedSlot();
         inventorySlots[_newSelectedSlot].SelectedSlot();
         _selectedSlot = _newSelectedSlot;
-        if (inventorySlots[_selectedSlot]._item.itemData.ItemType == ItemsType.Weapon)
+        if (inventorySlots[_selectedSlot]._item != null && inventorySlots[_selectedSlot]._item.itemData != null)
         {
-            foreach (var item in weaponItems)
+            
+            if (inventorySlots[_selectedSlot]._item.itemData.ItemType == ItemsType.Weapon)
             {
-                if (item.ID == inventorySlots[_selectedSlot]._item.itemData.ID)
+                foreach (var item in weaponItems)
                 {
-                    item.EnablePrefab(true);
-                    _currentActiveWeapon = item;
-                    break;
+                    if (item.ID == inventorySlots[_selectedSlot]._item.itemData.ID)
+                    {
+                        item.EnablePrefab(true);
+                        _currentActiveWeapon = item;
+                        break;
+                    }
                 }
             }
-        }
-        else
-        {
-            if (_currentActiveWeapon != null)
+            else
             {
-                _currentActiveWeapon.EnablePrefab(false);
+                if (_currentActiveWeapon != null)
+                {
+                    _currentActiveWeapon.EnablePrefab(false);
+                }
             }
+        }else
+        {
+            _currentActiveWeapon.EnablePrefab(false);
         }
     }
     public void ChangeItemInSlot(InventoryItem item, InventorySlot slot)

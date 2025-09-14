@@ -42,18 +42,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnActionButtonClick(InputAction.CallbackContext context)
     {
-        ItemsData _activeItemData = InventoryManager.Instance.GetItemInActiveSlot().itemData;
-        _activeItemType = _activeItemData.ItemType;
-        if (_activeItemType == ItemsType.Weapon)
+        InventoryItem _activeItem = InventoryManager.Instance.GetItemInActiveSlot();
+        if (_activeItem != null)
         {
-            _isPlayerWalking = false;
-            _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
-            _animator.SetTrigger(Constants.attackAnim);
-        }else if (_activeItemType == ItemsType.Seed)
-        {
-            if (_inFarmSlot != null)
+            ItemsData _activeItemData = _activeItem.itemData;
+            _activeItemType = _activeItemData.ItemType;
+            if (_activeItemType == ItemsType.Weapon)
             {
-                FarmManager.Instance.PlantSeed(_activeItemData, _inFarmSlot);
+                _isPlayerWalking = false;
+                _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
+                _animator.SetTrigger(Constants.attackAnim);
+            }
+            else if (_activeItemType == ItemsType.Seed)
+            {
+                if (_inFarmSlot != null)
+                {
+                    FarmManager.Instance.PlantSeed(_activeItemData, _inFarmSlot);
+                }
             }
         }
         
