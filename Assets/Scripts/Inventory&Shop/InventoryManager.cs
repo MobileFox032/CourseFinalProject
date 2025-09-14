@@ -70,7 +70,7 @@ public class InventoryManager : MonoBehaviour
                     if (itemInSlot == item)
                     {
                         slot.UpdateStackSizeText(item.stackSize);
-                        return;
+                        break;
                     }
                 }
             if (item.stackSize == 0)
@@ -84,7 +84,7 @@ public class InventoryManager : MonoBehaviour
                     if (itemInSlot == item)
                     {
                         slot.Clear(item);
-                        return;
+                        break;
                     }
                 }
             }
