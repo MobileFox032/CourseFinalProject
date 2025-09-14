@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private Image _itemImage;
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private GameObject _thisObject;
+    [SerializeField] private GameObject _selectedBorder;
 
     public void SetItem(InventoryItem item)
     {
@@ -28,5 +29,15 @@ public class InventorySlot : MonoBehaviour
         _itemImage.sprite = null;
         _amountText.text = "";
         _thisObject.SetActive(false);
+    }
+
+    public void SelectedSlot()
+    {
+        _selectedBorder.SetActive(true);
+    }
+
+    public void NonSelectedSlot()
+    {
+        _selectedBorder.SetActive(false);
     }
 }

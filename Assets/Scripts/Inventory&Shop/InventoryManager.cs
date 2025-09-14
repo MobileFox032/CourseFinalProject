@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour
     private Dictionary<ItemsData, InventoryItem> itemDictionary = new Dictionary<ItemsData, InventoryItem>();
 
     public InventorySlot[] inventorySlots;
-    
+    private int _selectedSlot = 0;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -17,6 +17,11 @@ public class InventoryManager : MonoBehaviour
             return;
         }
         Instance = this;
+    }
+
+    void Start()
+    {
+        inventorySlots[_selectedSlot].SelectedSlot();
     }
 
     public void AddItem(ItemsData itemData)
@@ -51,9 +56,14 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        
-    }
 
+    }
+    public void SelectSlot(int _newSelectedSlot)
+    {
+        inventorySlots[_selectedSlot].NonSelectedSlot();
+        inventorySlots[_newSelectedSlot].SelectedSlot();
+        _selectedSlot = _newSelectedSlot;
+    }
     public void ChangeItemInSlot(InventoryItem item, InventorySlot slot)
     {
         slot.SetItem(item);

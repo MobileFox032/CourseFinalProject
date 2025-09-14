@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private int _maxHealth;
     private int _currentHealth;
     private int _basicDamage;
+    private int clickedSlot;
     void Start()
     {
         _speed = playerStats.Speed;
@@ -42,6 +43,15 @@ public class PlayerController : MonoBehaviour
         _isPlayerWalking = false;
         _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
         _animator.SetTrigger(Constants.attackAnim);
+    }
+
+    public void OnInventorySlotsClick(InputAction.CallbackContext context)
+    {
+        if (int.TryParse(context.control.displayName, out clickedSlot))
+        {
+            InventoryManager.Instance.SelectSlot(clickedSlot - 1);
+        }
+        // clickedSlot = context.control.displayName;
     }
 
     public void TakeDamage(int damage)
