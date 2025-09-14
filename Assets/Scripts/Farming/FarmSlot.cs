@@ -4,7 +4,7 @@ public class FarmSlot : MonoBehaviour
 {
     public FarmItem farmItem;
     private int _plantedOnDay;
-    private FarmPlotStatus _farmPlotStatus = FarmPlotStatus.Dirt;
+    [SerializeField] private FarmPlotStatus _farmPlotStatus = FarmPlotStatus.Dirt;
     [SerializeField] private FarmSlotStatusPrefabs[] _farmPlotStatusPrefabs;
     [SerializeField] private Transform _spawnPlantPoint;
     private GameObject _lastPlantStatus;
@@ -23,7 +23,7 @@ public class FarmSlot : MonoBehaviour
             if (item.Status == _status)
             {
                 item.Prefab.SetActive(true);
-                break;
+                // break;
             }
             else
             {
@@ -59,9 +59,34 @@ public class FarmSlot : MonoBehaviour
         GameObject newPrefab = data.GrowthPrefabs[stageIndex];
 
         if (_lastPlantStatus != null)
+        {
             Destroy(_lastPlantStatus);
-
+        }
         _lastPlantStatus = Instantiate(newPrefab, _spawnPlantPoint.position, _spawnPlantPoint.rotation);
+    }
+
+    public bool CanHarvest(int currentDay)
+    {
+        if (farmItem == null || farmItem.itemData == null)
+        {
+            return false;
+        }
+
+        int daysGrowing = currentDay - _plantedOnDay;
+        return (daysGrowing >= farmItem.itemData.TimeToGrowth);
+    }
+
+    public void RestoreSlotDefault()
+    {
+        SetSlotStatus(FarmPlotStatus.Dirt);
+        if (_lastPlantStatus != null)
+        {
+            Destroy(_lastPlantStatus);
+        }
+        _lastPlantStatus = null;
+        farmItem = null;
+        _plantedOnDay = 0;
+
     }
 
 }

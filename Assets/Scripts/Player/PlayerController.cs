@@ -51,6 +51,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (_inFarmSlot != null)
                 {
+                    if (FarmManager.Instance.CheckIfCanHarvest(_inFarmSlot))
+                    {
+                        FarmManager.Instance.Harvest(_inFarmSlot);
+                        return;
+                    }
                     FarmManager.Instance.ChangeFarmSlotStatus(_inFarmSlot);
                 }
                 else

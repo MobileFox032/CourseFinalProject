@@ -43,6 +43,21 @@ public class FarmManager : MonoBehaviour
         }
     }
 
+    public bool CheckIfCanHarvest(FarmSlot farmSlot)
+    {
+        return farmSlot.CanHarvest(_day);
+    }
+
+    public void Harvest(FarmSlot farmSlot)
+    {
+        MainManager.Instance.AddGold(farmSlot.farmItem.itemData.SellCostFullyGrown);
+        MakeSlotEmpty(farmSlot);
+    }
+
+    public void MakeSlotEmpty(FarmSlot farmSlot)
+    {
+        farmSlot.RestoreSlotDefault();
+    }
     public void NextDay()
     {
         _day++;
