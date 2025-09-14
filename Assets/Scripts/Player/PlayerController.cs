@@ -49,9 +49,16 @@ public class PlayerController : MonoBehaviour
             _activeItemType = _activeItemData.ItemType;
             if (_activeItemType == ItemsType.Weapon)
             {
-                _isPlayerWalking = false;
-                _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
-                _animator.SetTrigger(Constants.attackAnim);
+                if (_inFarmSlot != null)
+                {
+                    FarmManager.Instance.ChangeFarmSlotStatus(_inFarmSlot);
+                }
+                else
+                {
+                    _isPlayerWalking = false;
+                    _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
+                    _animator.SetTrigger(Constants.attackAnim);
+                }
             }
             else if (_activeItemType == ItemsType.Seed)
             {

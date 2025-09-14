@@ -6,7 +6,7 @@ public class FarmManager : MonoBehaviour
     public static FarmManager Instance { get; private set; }
 
     public List<FarmItem> farmItems = new List<FarmItem>();
-    private Dictionary<ItemsData, FarmItem> farmItemDictionary = new Dictionary<ItemsData, FarmItem>();
+
     public FarmSlot[] farmSlots;
 
     private int _day = 1;
@@ -29,8 +29,26 @@ public class FarmManager : MonoBehaviour
                 FarmItem newFarmItem = new FarmItem(itemData);
                 newFarmItem.farmSlot = farmSlot;
                 farmSlot.SetPlant(_day, newFarmItem);
+                farmSlot.UpdateGrowth(_day);
                 InventoryManager.Instance.RemoveItem(itemData);
             }
+        }
+    }
+
+    public void ChangeFarmSlotStatus(FarmSlot farmSlot)
+    {
+        if (farmSlot.isActiveAndEnabled)
+        {
+            farmSlot.SetSlotStatus(FarmPlotStatus.Cultivated);
+        }
+    }
+
+    public void NextDay()
+    {
+        _day++;
+        foreach (var item in farmSlots)
+        {
+            item.UpdateGrowth(_day);
         }
     }
 }
