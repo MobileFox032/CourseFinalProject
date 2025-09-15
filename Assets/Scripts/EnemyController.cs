@@ -5,10 +5,17 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private NavMeshAgent _enemyAgent;
+    [SerializeField] private Animator _animator;
 
     private int _currentHealth;
     private Transform _currentPoint;
     private Transform[] _targetPoints;
+    private FarmSlot[] _targets;
+    private FarmSlot _currentTarget;
+    private float _attackRange = 1.4f;
+    private float _attackCooldown = 1.0f;
+    private float _attackAnimCD;
+    private int _damage = 20;
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
@@ -24,6 +31,30 @@ public class EnemyController : MonoBehaviour
         SetParams();
     }
 
+    void Update()
+    {
+        if (!_currentTarget.isActiveAndEnabled || !_currentTarget.HasPlant())
+        {
+            SetTarget();
+        }
+        if (!_enemyAgent.pathPending && _enemyAgent.remainingDistance <= Mathf.Max(_enemyAgent.stoppingDistance, _attackRange))
+        {
+            _enemyAgent.isStopped = true;
+            // Face(_currentTarget.transform.position);
+            _attackAnimCD -= Time.deltaTime;
+            if (_attackAnimCD <= 0f)
+            {
+                TryAttack();
+                _attackAnimCD = _attackCooldown;
+            }
+
+        }
+        else
+        {
+            _enemyAgent.isStopped = false;
+        }
+    }
+
     private void OnEnable()
     {
         SetParams();
@@ -31,12 +62,34 @@ public class EnemyController : MonoBehaviour
 
     private void SetParams()
     {
+        _attackAnimCD = _attackCooldown;
+        _enemyAgent.stoppingDistance = _attackRange * 0.9f;
         _currentHealth = _maxHealth;
-        _targetPoints = TargetPoints.Instance.GetPoints();
-        _currentPoint = _targetPoints[Random.Range(0, _targetPoints.Length)];
-        _enemyAgent.SetDestination(_currentPoint.position);
+
+        _targets = TargetPoints.Instance.GetTargets();
+        SetTarget();
+  
     }
 
+    private void SetTarget()
+    {
+        for (int i = 0; i < _targets.Length; i++)
+        {
+            _currentTarget = _targets[Random.Range(0, _targets.Length)];
+            if (_currentTarget.HasPlant())
+            {
+                _enemyAgent.SetDestination(_currentTarget.transform.position); 
+                return;
+            }
+        }
+
+    }
+
+    private void TryAttack()
+    {
+        // _animator.SetTrigger(Constants.EnemyAttack);
+        _currentTarget.TakeDamage(_damage);
+    }
     private void Die()
     {
         this.gameObject.SetActive(false);

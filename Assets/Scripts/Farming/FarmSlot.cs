@@ -9,10 +9,13 @@ public class FarmSlot : MonoBehaviour
     [SerializeField] private Transform _spawnPlantPoint;
     private GameObject _lastPlantStatus;
 
+    [SerializeField] private int _maxPlantHP = 100;
+    private int _hp;
     public void SetPlant(int _day, FarmItem _item)
     {
         _plantedOnDay = _day;
         farmItem = _item;
+        _hp = _maxPlantHP;
     }
 
     public void SetSlotStatus(FarmPlotStatus _status)
@@ -87,6 +90,20 @@ public class FarmSlot : MonoBehaviour
         farmItem = null;
         _plantedOnDay = 0;
 
+    }
+
+    public bool HasPlant()
+    {
+        return (farmItem != null && farmItem.itemData != null);
+    }
+
+    public void TakeDamage(int _dmg)
+    {
+        _hp -= _dmg;
+        if (_hp <= 0)
+        {
+            RestoreSlotDefault();
+        }
     }
 
 }

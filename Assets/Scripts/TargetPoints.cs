@@ -4,6 +4,7 @@ public class TargetPoints : MonoBehaviour
 {
     public static TargetPoints Instance { get; private set; }
     [SerializeField] private Transform[] _targetPoints;
+    [SerializeField] private FarmSlot[] _targets;
 
     private void Start()
     {
@@ -18,5 +19,10 @@ public class TargetPoints : MonoBehaviour
     public Transform[] GetPoints()
     {
         return _targetPoints;
+    }
+
+    public FarmSlot[] GetTargets()
+    {
+        return _targets;
     }
 }

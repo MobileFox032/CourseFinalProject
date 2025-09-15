@@ -1404,6 +1404,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetPoints:
   - {fileID: 1486256522}
+  _targets:
+  - {fileID: 1486256523}
+  - {fileID: 308600912}
+  - {fileID: 1945061879}
+  - {fileID: 1391808234}
+  - {fileID: 4648229}
+  - {fileID: 1960529134}
+  - {fileID: 1190422233}
+  - {fileID: 1554999646}
+  - {fileID: 1529237376}
+  - {fileID: 692469456}
 --- !u!1 &129028397
 GameObject:
   m_ObjectHideFlags: 0
@@ -9148,7 +9159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 3814219419785742691, guid: f67883474b6b05b4fa3d85ad17cdf7aa, type: 3}
-  _poolSize: 10
+  _poolSize: 2
 --- !u!4 &868973492
 Transform:
   m_ObjectHideFlags: 0
@@ -21765,6 +21776,10 @@ PrefabInstance:
     - target: {fileID: 481053850618015885, guid: 1f33e68bb8c8e154ab60ae288d04d0c0, type: 3}
       propertyPath: m_Name
       value: FarmPoint1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481053850618015885, guid: 1f33e68bb8c8e154ab60ae288d04d0c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2751107923853291766, guid: 1f33e68bb8c8e154ab60ae288d04d0c0, type: 3}
       propertyPath: m_IsActive
