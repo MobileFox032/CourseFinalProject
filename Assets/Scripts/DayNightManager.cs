@@ -15,6 +15,24 @@ public class DayNightManager : MonoBehaviour
     private float _duration = 1f;
     private int _day = 1;
     public int Day => _day;
+
+    private int _needToKillAtThisDay;
+    private int _killedThisDay;
+
+    public void SetKillsGoal(int _goal)
+    {
+        _needToKillAtThisDay = _goal;
+        _killedThisDay = 0;
+    }
+
+    public void IncrementKilledCount()
+    {
+        _killedThisDay++;
+        if (_killedThisDay >= _needToKillAtThisDay)
+        {
+            BlendToDay();
+        }
+    }
     void Awake()
     {
         if (Instance != null && Instance != this)

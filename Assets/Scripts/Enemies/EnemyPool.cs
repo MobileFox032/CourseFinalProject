@@ -6,10 +6,10 @@ public class EnemyPool : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private int _poolSize = 10;
+    public int PoolSize => _poolSize;
     [SerializeField] private FarmSlot[] _targets;
 
     private List<GameObject> _pool;
-    public bool _allSpawned = false;
 
     void OnEnable()
     {
@@ -18,26 +18,11 @@ public class EnemyPool : MonoBehaviour
 
     void Update()
     {
-        if (_allSpawned)
-        {
-            if (!IsAnyActive())
-            {
-                DayNightManager.Instance.BlendToDay();
-                _allSpawned = false;
-            }
-        }
-    }
 
-    public bool IsAnyActive()
+    }
+    public List<GameObject> GetPool()
     {
-        for (int i = 0; i < _pool.Count; i++)
-        {
-            if (_pool[i].activeInHierarchy)
-            {
-                return true;
-            }
-        }
-        return false;
+        return _pool;
     }
     private void SetPool()
     {

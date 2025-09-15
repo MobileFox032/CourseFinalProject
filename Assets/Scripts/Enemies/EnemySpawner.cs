@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -7,27 +9,30 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _minTimeToSpawn;
     [SerializeField] private float _maxTimeToSpawn;
     [SerializeField] private EnemyPool _enemyPool;
+    [SerializeField] private GameObject _parent;
+    private List<GameObject> _pool;
 
     private float _timeUntilSpawn;
+    private int _lastSpawned;
+    private int _poolSize;
 
-    void Start()
+    void OnEnable()
     {
         _timeUntilSpawn = Random.Range(_minTimeToSpawn, _maxTimeToSpawn);
+        _pool = _enemyPool.GetPool();
+        _poolSize = _enemyPool.PoolSize;
+        _lastSpawned = 0;
+        DayNightManager.Instance.SetKillsGoal(_poolSize);
     }
 
-    // Update is called once per frame
     void Update()
     {
         _timeUntilSpawn -= Time.deltaTime;
 
-        if (!_enemyPool.HasFreeObjects())
+        if (_lastSpawned > _poolSize - 1)
         {
-            _enemyPool._allSpawned = true;
-            if (!_enemyPool.IsAnyActive())
-            {
-                enabled = false;
-                return;
-            }
+            _parent.SetActive(false);
+            return;
         }
 
         if (_timeUntilSpawn <= 0)
@@ -39,15 +44,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject _enemy = _enemyPool.GetEnemy();
-        
-            if (!_enemyPool.HasFreeObjects())
-            {
-                enabled = false;
-                return;
-            }
-            Transform _point = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
-            _enemy.transform.position = _point.position;
-        
+        _pool[_lastSpawned].SetActive(true);
+        Transform _point = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+        _pool[_lastSpawned].transform.position = _point.position;
+        _lastSpawned++;
     }
 }

@@ -9628,6 +9628,7 @@ MonoBehaviour:
   _minTimeToSpawn: 2
   _maxTimeToSpawn: 5
   _enemyPool: {fileID: 868973491}
+  _parent: {fileID: 868973489}
 --- !u!114 &868973491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9653,7 +9654,6 @@ MonoBehaviour:
   - {fileID: 1554999646}
   - {fileID: 1529237376}
   - {fileID: 692469456}
-  _allSpawned: 0
 --- !u!4 &868973492
 Transform:
   m_ObjectHideFlags: 0
@@ -23111,6 +23111,10 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 622725021}
+    - target: {fileID: 3847169012246970842, guid: 78167284ea85bad479b7841728423a73, type: 3}
+      propertyPath: _damage
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5635117097391049100, guid: 78167284ea85bad479b7841728423a73, type: 3}
       propertyPath: m_Name
       value: Player

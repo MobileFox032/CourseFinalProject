@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private NavMeshAgent _enemyAgent;
     [SerializeField] private Animator _animator;
+    [SerializeField] private int _damage = 10;
 
     private int _currentHealth;
     private Transform _currentPoint;
@@ -15,7 +16,6 @@ public class EnemyController : MonoBehaviour
     private float _attackRange = 1.4f;
     private float _attackCooldown = 1.0f;
     private float _attackAnimCD;
-    private int _damage = 20;
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
@@ -34,7 +34,6 @@ public class EnemyController : MonoBehaviour
         if (!_enemyAgent.pathPending && _enemyAgent.remainingDistance <= Mathf.Max(_enemyAgent.stoppingDistance, _attackRange))
         {
             _enemyAgent.isStopped = true;
-            // Face(_currentTarget.transform.position);
             _attackAnimCD -= Time.deltaTime;
             if (_attackAnimCD <= 0f)
             {
@@ -81,12 +80,13 @@ public class EnemyController : MonoBehaviour
 
     private void TryAttack()
     {
-        // _animator.SetTrigger(Constants.EnemyAttack);
+        _animator.SetTrigger(Constants.EnemyAttack);
         _currentTarget.TakeDamage(_damage);
     }
     private void Die()
     {
-        this.gameObject.SetActive(false);
+        DayNightManager.Instance.IncrementKilledCount();
+        Destroy(this.gameObject);
     }
 
 }
