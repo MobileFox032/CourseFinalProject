@@ -7,13 +7,13 @@ public class CoinsManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        MainManager.Instance.OnGoldChanged += UpdateUI;
-        UpdateUI(MainManager.Instance.Gold);
+        GoldManager.Instance.OnGoldChanged += UpdateUI;
+        UpdateUI(GoldManager.Instance.Gold);
     }
 
     private void OnDestroy()
     {
-        MainManager.Instance.OnGoldChanged -= UpdateUI;
+        GoldManager.Instance.OnGoldChanged -= UpdateUI;
     }
     private void UpdateUI(int goldAmount)
     {

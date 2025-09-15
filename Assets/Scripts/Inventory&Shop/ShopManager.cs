@@ -30,32 +30,32 @@ public class ShopManager : MonoBehaviour
     public void BuyFarmPlot()
     {
 
-        if (MainManager.Instance.Gold - Constants.farmPlotBuyCost >= 0)
+        if (GoldManager.Instance.Gold - Constants.farmPlotBuyCost >= 0)
         {
-            if (MainManager.Instance.currentFarmPlotIndex + 1 < _farmPlots.Length)
+            if (GoldManager.Instance.currentFarmPlotIndex + 1 < _farmPlots.Length)
             {
-                MainManager.Instance.SpendGold(Constants.farmPlotBuyCost);
-                MainManager.Instance.currentFarmPlotIndex++;
-                _farmPlots[MainManager.Instance.currentFarmPlotIndex].SetActive(true);
+                GoldManager.Instance.SpendGold(Constants.farmPlotBuyCost);
+                GoldManager.Instance.currentFarmPlotIndex++;
+                _farmPlots[GoldManager.Instance.currentFarmPlotIndex].SetActive(true);
             }
         }
     }
 
     public void SellFarmPlot()
     {
-        if (MainManager.Instance.currentFarmPlotIndex > 0)
+        if (GoldManager.Instance.currentFarmPlotIndex > 0)
         {
-            MainManager.Instance.AddGold(Constants.farmPlotSellCost);
-            _farmPlots[MainManager.Instance.currentFarmPlotIndex].SetActive(false);
-            MainManager.Instance.currentFarmPlotIndex--;
+            GoldManager.Instance.AddGold(Constants.farmPlotSellCost);
+            _farmPlots[GoldManager.Instance.currentFarmPlotIndex].SetActive(false);
+            GoldManager.Instance.currentFarmPlotIndex--;
         }
     }
 
     public void BuyItem(ItemsData item)
     {
-        if (MainManager.Instance.Gold - item.CostToBuy >= 0)
+        if (GoldManager.Instance.Gold - item.CostToBuy >= 0)
         {
-            MainManager.Instance.SpendGold(item.CostToBuy);
+            GoldManager.Instance.SpendGold(item.CostToBuy);
             InventoryManager.Instance.AddItem(item);
         }
         
@@ -63,7 +63,7 @@ public class ShopManager : MonoBehaviour
 
     public void SellItem(ItemsData item)
     {
-        MainManager.Instance.AddGold(item.SellCost);
+        GoldManager.Instance.AddGold(item.SellCost);
         InventoryManager.Instance.RemoveItem(item); 
     }
 }

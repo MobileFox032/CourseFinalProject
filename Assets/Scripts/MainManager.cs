@@ -1,19 +1,9 @@
-using System;
 using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; }
-    public int Gold => currentGoldAmount;
-    private int currentGoldAmount = 200;
-    public int currentFarmPlotIndex = 0;
-
-    public event Action<int> OnGoldChanged;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject _mainMenuUI;
 
     void Awake()
     {
@@ -24,20 +14,25 @@ public class MainManager : MonoBehaviour
         }
         Instance = this;
     }
-    // Update is called once per frame
+    void Start()
+    {
+        Pause();
+    }
+
     void Update()
     {
 
     }
-    public void AddGold(int amount)
+
+    public void Pause()
     {
-        currentGoldAmount += amount;
-        OnGoldChanged?.Invoke(currentGoldAmount);
+        _mainMenuUI.SetActive(true);
+        Time.timeScale = 1f;
     }
-    
-    public void SpendGold(int amount)
+
+    public void PlayGame()
     {
-        currentGoldAmount -= amount;
-        OnGoldChanged?.Invoke(currentGoldAmount);    
+        _mainMenuUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

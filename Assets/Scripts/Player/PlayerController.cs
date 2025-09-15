@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnEscapeClick(InputAction.CallbackContext context)
     {
-        
+        MainManager.Instance.Pause();
     }
     public void OnAttackClick(InputAction.CallbackContext context)
     {

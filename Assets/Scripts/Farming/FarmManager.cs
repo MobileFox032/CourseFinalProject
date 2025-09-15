@@ -50,7 +50,7 @@ public class FarmManager : MonoBehaviour
 
     public void Harvest(FarmSlot farmSlot)
     {
-        MainManager.Instance.AddGold(farmSlot.farmItem.itemData.SellCostFullyGrown);
+        GoldManager.Instance.AddGold(farmSlot.farmItem.itemData.SellCostFullyGrown);
         MakeSlotEmpty(farmSlot);
     }
 
