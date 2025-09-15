@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
         InventoryItem _activeItem = InventoryManager.Instance.GetItemInActiveSlot();
         if (_activeItem != null)
         {
+            _isPlayerWalking = false;
+            _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
             ItemsData _activeItemData = _activeItem.itemData;
             _activeItemType = _activeItemData.ItemType;
             if (_activeItemType == ItemsType.Weapon)
@@ -53,27 +55,38 @@ public class PlayerController : MonoBehaviour
                 {
                     if (FarmManager.Instance.CheckIfCanHarvest(_inFarmSlot))
                     {
+                        _animator.SetTrigger(Constants.gatheringAnim);
                         FarmManager.Instance.Harvest(_inFarmSlot);
                         return;
                     }
+                    _animator.SetTrigger(Constants.farmingPlotAnim);
                     FarmManager.Instance.ChangeFarmSlotStatus(_inFarmSlot);
                 }
-                else
-                {
-                    _isPlayerWalking = false;
-                    _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
-                    _animator.SetTrigger(Constants.attackAnim);
-                }
+
             }
             else if (_activeItemType == ItemsType.Seed)
             {
                 if (_inFarmSlot != null)
                 {
+                    _isPlayerWalking = false;
+                    _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
+                    _animator.SetTrigger(Constants.gatheringAnim);
                     FarmManager.Instance.PlantSeed(_activeItemData, _inFarmSlot);
                 }
             }
         }
         
+    }
+
+    public void OnEscapeClick(InputAction.CallbackContext context)
+    {
+        
+    }
+    public void OnAttackClick(InputAction.CallbackContext context)
+    {
+        _isPlayerWalking = false;
+        _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
+        _animator.SetTrigger(Constants.attackAnim);
     }
 
     public void OnInventorySlotsClick(InputAction.CallbackContext context)
@@ -91,6 +104,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (moveInput.x == 0 && moveInput.y == 0)
+        {
+            _isPlayerWalking = false;
+            _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
+        }
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
         forward.y = 0;

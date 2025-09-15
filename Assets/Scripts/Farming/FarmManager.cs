@@ -9,7 +9,7 @@ public class FarmManager : MonoBehaviour
 
     public FarmSlot[] farmSlots;
 
-    private int _day = 1;
+    // private int _day = 1;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -28,8 +28,8 @@ public class FarmManager : MonoBehaviour
             {
                 FarmItem newFarmItem = new FarmItem(itemData);
                 newFarmItem.farmSlot = farmSlot;
-                farmSlot.SetPlant(_day, newFarmItem);
-                farmSlot.UpdateGrowth(_day);
+                farmSlot.SetPlant(DayNightManager.Instance.Day, newFarmItem);
+                farmSlot.UpdateGrowth(DayNightManager.Instance.Day);
                 InventoryManager.Instance.RemoveItem(itemData);
             }
         }
@@ -45,7 +45,7 @@ public class FarmManager : MonoBehaviour
 
     public bool CheckIfCanHarvest(FarmSlot farmSlot)
     {
-        return farmSlot.CanHarvest(_day);
+        return farmSlot.CanHarvest(DayNightManager.Instance.Day);
     }
 
     public void Harvest(FarmSlot farmSlot)
@@ -60,10 +60,9 @@ public class FarmManager : MonoBehaviour
     }
     public void NextDay()
     {
-        _day++;
         foreach (var item in farmSlots)
         {
-            item.UpdateGrowth(_day);
+            item.UpdateGrowth(DayNightManager.Instance.Day);
         }
     }
 }
