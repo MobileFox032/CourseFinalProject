@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private AudioClip _attackSound;
     [SerializeField] private AudioClip _runSound;
+    [SerializeField] private AudioClip _inventorySlotSound;
 
     private Vector3 moveInput;
     private Vector3 velocity;
@@ -100,6 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         if (int.TryParse(context.control.displayName, out clickedSlot))
         {
+            AudioManager.PlaySFX2D(_inventorySlotSound, 0.8f);
             InventoryManager.Instance.SelectSlot(clickedSlot - 1);
         }
     }

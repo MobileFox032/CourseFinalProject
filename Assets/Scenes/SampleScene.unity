@@ -6289,6 +6289,7 @@ MonoBehaviour:
   _mainMenuUI: {fileID: 1289726868}
   _mainDayMusic: {fileID: 8300000, guid: 882f38efd0b3ac648b6aad20ea575499, type: 3}
   _mainNightMusic: {fileID: 8300000, guid: 5a1944aa7c9b294499f993b3c5b484f5, type: 3}
+  _buttonPressedSound: {fileID: 8300000, guid: b12c1e501b51c1340b16ba9a959678c5, type: 3}
 --- !u!4 &559295537
 Transform:
   m_ObjectHideFlags: 0
@@ -9295,7 +9296,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1155516723}
         m_TargetAssemblyTypeName: DayNightManager, Assembly-CSharp
-        m_MethodName: BlendToNight
+        m_MethodName: NextNightButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23181,6 +23182,10 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 622725021}
+    - target: {fileID: 3300310458105727635, guid: 78167284ea85bad479b7841728423a73, type: 3}
+      propertyPath: _inventorySlotSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 625ad317b451ec147984e94636d712a6, type: 3}
     - target: {fileID: 3847169012246970842, guid: 78167284ea85bad479b7841728423a73, type: 3}
       propertyPath: _damage
       value: 50

@@ -59,6 +59,12 @@ public class DayNightManager : MonoBehaviour
         _day++;
         FarmManager.Instance.NextDay();
     }
+
+    public void NextNightButton()
+    {
+        AudioManager.PlaySFX2D(MainManager.Instance.ButtonSound);
+        BlendToNight();
+    }
     public void BlendToNight()
     {
         AudioManager.PlayMusic(MainManager.Instance.NightMusic, 1.0f, true);
