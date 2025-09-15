@@ -4,6 +4,8 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField] private GameObject _shopUI;
     [SerializeField] private GameObject[] _farmPlots;
+    [SerializeField] private AudioClip _shopSound;
+    [SerializeField] private AudioClip _buySound;
 
     public static ShopManager Instance { get; private set; }
     void Awake()
@@ -18,12 +20,14 @@ public class ShopManager : MonoBehaviour
 
     public void ActivateShop()
     {
+        AudioManager.PlaySFX2D(_shopSound);
         _shopUI.SetActive(true);
 
     }
 
     public void DeactivateShop()
     {
+        AudioManager.PlaySFX2D(_shopSound);
         _shopUI.SetActive(false);
     }
 
@@ -35,6 +39,7 @@ public class ShopManager : MonoBehaviour
             if (GoldManager.Instance.currentFarmPlotIndex + 1 < _farmPlots.Length)
             {
                 GoldManager.Instance.SpendGold(Constants.farmPlotBuyCost);
+                AudioManager.PlaySFX2D(_buySound);
                 GoldManager.Instance.currentFarmPlotIndex++;
                 _farmPlots[GoldManager.Instance.currentFarmPlotIndex].SetActive(true);
             }
@@ -56,6 +61,7 @@ public class ShopManager : MonoBehaviour
         if (GoldManager.Instance.Gold - item.CostToBuy >= 0)
         {
             GoldManager.Instance.SpendGold(item.CostToBuy);
+            AudioManager.PlaySFX2D(_buySound);
             InventoryManager.Instance.AddItem(item);
         }
         

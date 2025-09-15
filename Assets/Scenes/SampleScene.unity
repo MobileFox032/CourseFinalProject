@@ -1870,6 +1870,7 @@ MonoBehaviour:
   - {fileID: 1554999646}
   - {fileID: 1529237376}
   - {fileID: 692469456}
+  _harvestSound: {fileID: 8300000, guid: 13080dc9f84824b65ad233427adf53a8, type: 3}
 --- !u!4 &169896506
 Transform:
   m_ObjectHideFlags: 0
@@ -6286,6 +6287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenuUI: {fileID: 1289726868}
+  _mainDayMusic: {fileID: 8300000, guid: 882f38efd0b3ac648b6aad20ea575499, type: 3}
+  _mainNightMusic: {fileID: 8300000, guid: 5a1944aa7c9b294499f993b3c5b484f5, type: 3}
 --- !u!4 &559295537
 Transform:
   m_ObjectHideFlags: 0
@@ -6977,6 +6980,8 @@ MonoBehaviour:
   - {fileID: 1554999643}
   - {fileID: 1529237373}
   - {fileID: 692469453}
+  _shopSound: {fileID: 8300000, guid: 3c392e6befcab436bae9c198f4ea422c, type: 3}
+  _buySound: {fileID: 8300000, guid: 4d24975329921423b9c49a8807c8f508, type: 3}
 --- !u!1 &633254168
 GameObject:
   m_ObjectHideFlags: 0
@@ -15570,6 +15575,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a00959a63722043a79e076eef03621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1402992370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402992372}
+  - component: {fileID: 1402992371}
+  m_Layer: 0
+  m_Name: GameAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1402992371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402992370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bdd75b57b97fb4692b835cecf6804d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 0d295ab40bae0944a82ccd1e809000ff, type: 2}
+  musicParam: MusicVolume
+  sfxParam: SFXVolume
+  musicSource: {fileID: 0}
+  musicFadeTime: 0.5
+  sfxPoolRoot: {fileID: 0}
+  sfxGroup: {fileID: 427460654479845440, guid: 0d295ab40bae0944a82ccd1e809000ff, type: 2}
+  poolSize: 16
+  musicClips:
+  - {fileID: 8300000, guid: 882f38efd0b3ac648b6aad20ea575499, type: 3}
+  - {fileID: 8300000, guid: 5a1944aa7c9b294499f993b3c5b484f5, type: 3}
+  sfxClips:
+  - {fileID: 8300000, guid: d7ea6b2cca581414e87717a0d085aa62, type: 3}
+--- !u!4 &1402992372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402992370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2911.2166, y: 731.4232, z: -2.9738908}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412141663
 GameObject:
   m_ObjectHideFlags: 0
@@ -23108,6 +23170,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3300310458105727635, guid: 78167284ea85bad479b7841728423a73, type: 3}
+      propertyPath: _runSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 31be579b280d0bc459635877e8c45aee, type: 3}
+    - target: {fileID: 3300310458105727635, guid: 78167284ea85bad479b7841728423a73, type: 3}
+      propertyPath: _attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 482611fe6bc559142a00be6e726b4862, type: 3}
+    - target: {fileID: 3300310458105727635, guid: 78167284ea85bad479b7841728423a73, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 622725021}
@@ -23264,3 +23334,4 @@ SceneRoots:
   - {fileID: 1795763547}
   - {fileID: 1541854133}
   - {fileID: 3878515075179574035}
+  - {fileID: 1402992372}

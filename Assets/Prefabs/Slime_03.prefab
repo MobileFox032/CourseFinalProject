@@ -170,6 +170,9 @@ MonoBehaviour:
   _maxHealth: 100
   _enemyAgent: {fileID: 924898238939710500}
   _animator: {fileID: 1999696580851747556}
+  _damage: 10
+  _hitSound: {fileID: 8300000, guid: 605611dd6463bbc4090ab6408907d9e8, type: 3}
+  _dieSound: {fileID: 8300000, guid: df7b0527bedef454c888055c076048ed, type: 3}
 --- !u!95 &1999696580851747556
 Animator:
   serializedVersion: 7

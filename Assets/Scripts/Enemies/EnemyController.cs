@@ -7,6 +7,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private NavMeshAgent _enemyAgent;
     [SerializeField] private Animator _animator;
     [SerializeField] private int _damage = 10;
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private AudioClip _dieSound;
+    
 
     private int _currentHealth;
     private Transform _currentPoint;
@@ -18,6 +21,7 @@ public class EnemyController : MonoBehaviour
     private float _attackAnimCD;
     public void TakeDamage(int damage)
     {
+        AudioManager.PlaySFX2D(_hitSound);
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
@@ -86,6 +90,8 @@ public class EnemyController : MonoBehaviour
     private void Die()
     {
         DayNightManager.Instance.IncrementKilledCount();
+        _animator.SetTrigger(Constants.EnemyDieAnim);
+        AudioManager.PlaySFX2D(_dieSound);
         Destroy(this.gameObject);
     }
 

@@ -54,12 +54,14 @@ public class DayNightManager : MonoBehaviour
 
     public void BlendToDay()
     {
+        AudioManager.PlayMusic(MainManager.Instance.DayMusic, 1.0f, true);
         StartBlend(Constants.shaderDayBlend, _dayColor);
         _day++;
         FarmManager.Instance.NextDay();
     }
     public void BlendToNight()
     {
+        AudioManager.PlayMusic(MainManager.Instance.NightMusic, 1.0f, true);
         StartBlend(Constants.shaderNightBlend, _nightColor);
         _enemySpawner.SetActive(true);
     }

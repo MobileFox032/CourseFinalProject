@@ -4,6 +4,7 @@ public class Constants
 {
     public static string attackAnim = "attackAnim";
     public static string EnemyAttack = "EnemyAttack";
+    public static string EnemyDieAnim = "Die";
     public static string playerWalk = "IsWalking";
     public static string gatheringAnim = "gatheringAnim";
     public static string farmingPlotAnim = "farmingPlotAnim";

@@ -9,6 +9,8 @@ public class FarmManager : MonoBehaviour
 
     public FarmSlot[] farmSlots;
 
+    [SerializeField] private AudioClip _harvestSound;
+
     // private int _day = 1;
     void Awake()
     {
@@ -51,6 +53,7 @@ public class FarmManager : MonoBehaviour
     public void Harvest(FarmSlot farmSlot)
     {
         GoldManager.Instance.AddGold(farmSlot.farmItem.itemData.SellCostFullyGrown);
+        AudioManager.PlaySFX2D(_harvestSound);
         MakeSlotEmpty(farmSlot);
     }
 

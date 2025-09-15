@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider _weaponCollider;
     [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private AudioClip _attackSound;
+    [SerializeField] private AudioClip _runSound;
 
     private Vector3 moveInput;
     private Vector3 velocity;
@@ -89,6 +91,11 @@ public class PlayerController : MonoBehaviour
         _animator.SetTrigger(Constants.attackAnim);
     }
 
+    public void SoundFX()
+    {
+        AudioManager.PlaySFX2D(_attackSound, 0.8f);
+    }
+
     public void OnInventorySlotsClick(InputAction.CallbackContext context)
     {
         if (int.TryParse(context.control.displayName, out clickedSlot))
@@ -108,6 +115,10 @@ public class PlayerController : MonoBehaviour
         {
             _isPlayerWalking = false;
             _animator.SetBool(Constants.playerWalk, _isPlayerWalking);
+        }
+        else
+        {
+            AudioManager.PlaySFXFollow(_runSound, transform, 0.6f, 0.07f);
         }
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;

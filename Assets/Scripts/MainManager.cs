@@ -4,7 +4,11 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; }
     [SerializeField] private GameObject _mainMenuUI;
+    [SerializeField] private AudioClip _mainDayMusic;
+    [SerializeField] private AudioClip _mainNightMusic;
 
+    public AudioClip DayMusic => _mainDayMusic;
+    public AudioClip NightMusic => _mainNightMusic;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -13,6 +17,8 @@ public class MainManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        AudioManager.PlayMusic(_mainDayMusic);
     }
     void Start()
     {
