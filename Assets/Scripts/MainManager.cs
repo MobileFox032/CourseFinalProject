@@ -20,7 +20,7 @@ public class MainManager : MonoBehaviour
         }
         Instance = this;
 
-        AudioManager.PlayMusic(_mainDayMusic);
+        // AudioManager.PlayMusic(_mainDayMusic);
     }
     void Start()
     {
@@ -42,6 +42,7 @@ public class MainManager : MonoBehaviour
     public void PlayGame()
     {
         AudioManager.PlaySFX2D(_buttonPressedSound);
+        AudioManager.PlayMusic(_mainDayMusic);
         _mainMenuUI.SetActive(false);
         Time.timeScale = 1f;
     }

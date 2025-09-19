@@ -131,6 +131,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a516f546-c2e8-494f-b1ad-518bad3d527c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "426ec9cb-c6f6-4ac7-88d7-f631d64dac9b",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -241,8 +252,30 @@
                 },
                 {
                     "name": "",
+                    "id": "73ca0f76-e677-4a5e-a731-a2cf83a586ed",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0e04225c-b186-4007-8b0c-073d9689d257",
                     "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "197f1a60-ea99-4730-84e0-a4794abe1d50",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -264,15 +297,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "GamepadZoom",
-                    "type": "Value",
-                    "id": "2305b57a-2a68-4f3c-acbe-4e3c8f19e551",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -286,39 +310,6 @@
                     "action": "MouseZoom",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "1e02f9ca-f1df-4930-8f15-498f279ea141",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GamepadZoom",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "aba64451-0b89-407b-a6e8-234f9352bc4b",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GamepadZoom",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "5978bab2-e83a-4565-9a53-0fd47348afb7",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GamepadZoom",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

@@ -22,7 +22,6 @@ public class ShopManager : MonoBehaviour
     {
         AudioManager.PlaySFX2D(_shopSound);
         _shopUI.SetActive(true);
-
     }
 
     public void DeactivateShop()
